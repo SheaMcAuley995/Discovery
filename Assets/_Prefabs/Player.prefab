@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 114344923329742288}
   - component: {fileID: 153355316157571464}
   - component: {fileID: 114958668307822514}
+  - component: {fileID: 114795556658459982}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -519,6 +520,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 95e12ef00075e6f47885d2b568516928, type: 2}
+  m_Camera: {fileID: 0}
+  m_PreviousProfile: {fileID: 0}
+  m_RenderingInSceneView: 0
 --- !u!114 &114344923329742288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -569,6 +573,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lookSensitiviy: 3
+--- !u!114 &114795556658459982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217230086323776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a585503599b5394d94056e5859700e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!114 &114958668307822514
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour {
 
     public static void RegisterPlayer(string _netID, Player _player)
     {
-        string _playerID = PLAYER_ID_PREFIX + _netID;
-        players.Add(_playerID, _player);
-        _player.transform.name = _playerID;
+        //string _playerID = PLAYER_ID_PREFIX + _netID;
+        players.Add(_netID, _player);
+        //if (_player != null) { Debug.Log("YaaaaY"); } else { Debug.Log("FuuuuuK"); }
+        Debug.Log("Registered: " + _netID);
+        _player.transform.name = _netID;
     }
 
     public static void UnRegisterPlayer(string _playerID)
@@ -22,21 +24,22 @@ public class GameManager : MonoBehaviour {
 
     public static Player Getplayer (string _playerID)
     {
+        Debug.Log("Look Up: " + _playerID);
         return players[_playerID];
     }
 
-    private void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(200, 200, 200, 500));
+    //private void OnGUI()
+    //{
+    //    GUILayout.BeginArea(new Rect(200, 200, 200, 500));
 
-        GUILayout.BeginVertical();
+    //    GUILayout.BeginVertical();
 
-        foreach(string _playerID in players.Keys)
-        {
-            GUILayout.Label(_playerID + " - " + players[_playerID].transform.name);
-        }
+    //    foreach (string _playerID in players.Keys)
+    //    {
+    //        GUILayout.Label(_playerID + " - " + players[_playerID].transform.name);
+    //    }
 
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
+    //    GUILayout.EndVertical();
+    //    GUILayout.EndArea();
+    //}
 }

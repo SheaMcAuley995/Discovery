@@ -42,12 +42,12 @@ public class playerSetup : NetworkBehaviour {
 
         string _netID = GetComponent<NetworkIdentity>().netId.ToString();
         Player _player = GetComponent<Player>();
-
+        Debug.Log("DOUBLE Yaaayyy");
         GameManager.RegisterPlayer(_netID, _player);
     }
     void RegisterPlayer()
     {
-        string _ID = "Player " + GetComponent<NetworkIdentity>().netId;
+        string _ID = GetComponent<NetworkIdentity>().netId.ToString();
         transform.name = _ID;
     }
 
