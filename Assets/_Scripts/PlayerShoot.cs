@@ -5,9 +5,8 @@ using UnityEngine.Networking;
 
 public class PlayerShoot : NetworkBehaviour {
 
-    private const string PLAYER_TAG = "Player";
 
-    public PlayerWeapon weapon;
+    private const string PLAYER_TAG = "Player";
 
     [SerializeField]
     private Camera cam;
@@ -15,53 +14,58 @@ public class PlayerShoot : NetworkBehaviour {
     [SerializeField]
     private LayerMask mask;
 
-    private void Start()
+    private PlayerWeapon currentWeapon;
+
+    void Start()
     {
         if (cam == null)
         {
-            Debug.LogError("PlayerShoot: No camera Referenced!");
+            Debug.LogError("PlayerShoot: No camera referenced!");
             this.enabled = false;
         }
 
     }
 
-    private void Update()
+    void Update()
     {
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-
-        }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
+ 
     }
 
     [Client]
     void Shoot()
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask))
+        if (!isLocalPlayer)
         {
-            if (hit.collider.tag == PLAYER_TAG)
+            return;
+        }
+
+
+
+        RaycastHit _hit;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, currentWeapon.range, mask))
+        {
+            if (_hit.collider.tag == PLAYER_TAG)
             {
-                CmdPlayerShot(hit.collider.name , weapon.damage);
+                CmdPlayerShot(_hit.collider.name, currentWeapon.damage, transform.name);
             }
         }
+
+
     }
 
     [Command]
-    void CmdPlayerShot(string _playerID, int _damage)
+    void CmdPlayerShot(string _playerID, int _damage, string _sourceID)
     {
         Debug.Log(_playerID + " has been shot.");
 
-        Player player = GameManager.Getplayer(_playerID);
-        player.RpcTakeDamage(_damage);
-
-        
-        //player.TakeDamager();
-
-        
+        Player _player = GameManager.Getplayer(_playerID);
+        _player.RpcTakeDamage(_damage);
     }
-}
 
+}
 
