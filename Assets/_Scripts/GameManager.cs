@@ -10,11 +10,11 @@ public class GameManager : MonoBehaviour {
 
     public static void RegisterPlayer(string _netID, Player _player)
     {
-        //string _playerID = PLAYER_ID_PREFIX + _netID;
-        players.Add(_netID, _player);
+        string _playerID = PLAYER_ID_PREFIX + _netID;
+        players.Add(_playerID, _player);
         //if (_player != null) { Debug.Log("YaaaaY"); } else { Debug.Log("FuuuuuK"); }
         Debug.Log("Registered: " + _netID);
-        _player.transform.name = _netID;
+        _player.transform.name = _playerID;
     }
 
     public static void UnRegisterPlayer(string _playerID)

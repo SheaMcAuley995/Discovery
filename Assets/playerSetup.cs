@@ -30,7 +30,7 @@ public class playerSetup : NetworkBehaviour {
             
         }
 
-
+        GetComponent<Player>().Setup();
         RegisterPlayer();
 
     }
@@ -67,7 +67,7 @@ public class playerSetup : NetworkBehaviour {
     private void OnDisable()
     {
         if(sceneCamera != null)
-        {
+        { 
             Camera.main.gameObject.SetActive(true);
         }
 
